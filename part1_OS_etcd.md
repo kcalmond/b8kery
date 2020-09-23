@@ -3,7 +3,7 @@ Following the steps in the blog below to complete first phase (OS install/node c
 
 https://thenewstack.io/tutorial-set-up-a-secure-and-highly-available-etcd-cluster/
 
-NOTE: this is an *experimental* HA config since etcd is considered "experimental" right now on arm64. 
+NOTE: this is an *experimental* HA config since etcd is considered "experimental" right now on arm64.
 
 ## ClusterOS Setup
 Used "ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img.xz" image available here: https://cdimage.ubuntu.com/releases/18.04/release/
@@ -188,13 +188,24 @@ WantedBy=multi-user.target
 ```
 
 #### Start up & test etcd Cluster
-Everything checks out...
+First try at this caused etdc startup failures:
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
 sudo systemctl start etcd
 ```
+
+This issue comment was helpful. Here is what I did to fix etcd startup problems (on each node):
+```bash
+sudo mkdir -p /var/lib/etcd/default
+sudo chown -R etcd:etcd /var/lib/etcd
+sudo chmod 700 /var/lib/etcd
+```
+
+Finally, `sudo systemctl start etcd` worked.
+
+**Test the cluster:**
 
 ```bash
 etcdctl --endpoints https://10.0.0.60:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key put foo bar
