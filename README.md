@@ -178,9 +178,36 @@ Type=notify
 EnvironmentFile=/etc/etcd/etcd.conf
 ExecStart=/usr/bin/etcd
 Restart=always
-RestartSec=10s
+RestartSec=10sj
 LimitNOFILE=40000
 
 [Install]
 WantedBy=multi-user.target
+```
+
+#### Start up & test etcd Cluster
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable etcd
+sudo systemctl start etcd
+```
+
+```bash
+etcdctl --endpoints https://10.0.0.60:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key put foo bar
+
+> etcdctl --endpoints https://192.168.100.168:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key put foo bar
+OK
+
+> etcdctl --endpoints https://192.168.100.168:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key get foo
+foo
+bar
+
+> curl --cacert /etc/etcd/etcd-ca.crt --cert /etc/etcd/server.crt --key /etc/etcd/server.key https://192.168.100.168:2379/health
+{"health":"true"}
+
+> etcdctl --endpoints https://192.168.100.168:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key member list
+31f4822107f1a1d3, started, blueberry.almond.lan, https://192.168.100.16:2380, https://192.168.100.16:2379, false
+5246b58fd5117ab1, started, strawberry.almond.lan, https://192.168.100.168:2380, https://192.168.100.168:2379, false
+5700b9ecd6ca26d0, started, blackberry.almond.lan, https://192.168.100.137:2380, https://192.168.100.137:2379, false
+
 ```
