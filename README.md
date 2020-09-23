@@ -102,9 +102,9 @@ scp strawberry.almond.local.pem ubuntu@192.168.100.168:server.crt
 scp strawberry.almond.local-key.pem ubuntu@192.168.100.168:server.key
  ```
 
-#### Configure & start etcd Cluster
+#### Configure `etcd.conf` on each node
 
-Created `/etc/etcd/etcd.conf` on each cluster node. Note the addition of ETCD_UNSUPPORTED_ARCH="arm64" at end of each file. This is necessary to be able to start etcd on arm64. [ref](https://github.com/etcd-io/etcd/issues/10677#issuecomment-558058616)
+Created `/etc/etcd/etcd.conf` on each cluster node. Note the addition of ETCD_UNSUPPORTED_ARCH="arm64" at end of each file. This is necessary to be able to start etcd on arm64. [[ref](https://github.com/etcd-io/etcd/issues/10677#issuecomment-558058616)]
 ```
 ubuntu@strawberry:~$ cat /etc/etcd/etcd.conf
 ETCD_NAME=strawberry.almond.lan
@@ -159,4 +159,26 @@ ETCD_PEER_KEY_FILE="/etc/etcd/server.key"
 ETCD_PEER_CERT_FILE="/etc/etcd/server.crt"
 ETCD_DATA_DIR="/var/lib/etcd"
 ETCD_UNSUPPORTED_ARCH="arm64"
+```
+
+#### Configure etcd.service
+Added identical `/etc/systemd/system/etc.service` to each cluster host.
+NOTE: the blog specifies `/lib/systemd/system/etc.service`. This is not correct file hierarchy. Local configurations should use /etc/systemd. (see `man system.unit`)
+```bash
+ubuntu@blueberry:~$ cat /etc/systemd/system/etcd.service
+[Unit]
+Description=etcd key-value store
+Documentation=https://github.com/etcd-io/etcd
+After=network.target
+
+[Service]
+Type=notify
+EnvironmentFile=/etc/etcd/etcd.conf
+ExecStart=/usr/bin/etcd
+Restart=always
+RestartSec=10s
+LimitNOFILE=40000
+
+[Install]
+WantedBy=multi-user.target
 ```
