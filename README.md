@@ -58,3 +58,33 @@ ls -l ~/b8kerybuild
 -rw-r--r--  1 calmond  staff   883 Sep 22 21:31 ca.csr
 -rw-r--r--  1 calmond  staff  1070 Sep 22 21:31 ca.pem
 ```
+
+* Generate certs and keys for each node
+```bash
+export NAME=blueberry.almond.local
+export ADDRESS=192.168.100.16,$NAME
+echo '{"CN":"'$NAME'","hosts":[""],"key":{"algo":"rsa","size":2048}}' | cfssl gencert -config=ca-config.json -ca=ca.pem -ca-key=ca-key.pem -hostname="$ADDRESS" - | cfssljson -bare $NAME
+export NAME=blackberry.almond.local
+export ADDRESS=192.168.100.137,$NAME
+echo '{"CN":"'$NAME'","hosts":[""],"key":{"algo":"rsa","size":2048}}' | cfssl gencert -config=ca-config.json -ca=ca.pem -ca-key=ca-key.pem -hostname="$ADDRESS" - | cfssljson -bare $NAME
+export NAME=strawberry.almond.local
+export ADDRESS=192.168.100.168,$NAME
+echo '{"CN":"'$NAME'","hosts":[""],"key":{"algo":"rsa","size":2048}}' | cfssl gencert -config=ca-config.json -ca=ca.pem -ca-key=ca-key.pem -hostname="$ADDRESS" - | cfssljson -bare $NAME
+```
+
+```bash
+ls -l ~/b8kerybuild
+-rw-------  1 calmond  staff  1675 Sep 22 21:37 blackberry.almond.local-key.pem
+-rw-r--r--  1 calmond  staff   989 Sep 22 21:37 blackberry.almond.local.csr
+-rw-r--r--  1 calmond  staff  1241 Sep 22 21:37 blackberry.almond.local.pem
+-rw-------  1 calmond  staff  1675 Sep 22 21:37 blueberry.almond.local-key.pem
+-rw-r--r--  1 calmond  staff   989 Sep 22 21:37 blueberry.almond.local.csr
+-rw-r--r--  1 calmond  staff  1241 Sep 22 21:37 blueberry.almond.local.pem
+-rw-r--r--  1 calmond  staff   112 Sep 22 21:33 ca-config.json
+-rw-------  1 calmond  staff  1675 Sep 22 21:31 ca-key.pem
+-rw-r--r--  1 calmond  staff   883 Sep 22 21:31 ca.csr
+-rw-r--r--  1 calmond  staff  1070 Sep 22 21:31 ca.pem
+-rw-------  1 calmond  staff  1675 Sep 22 21:38 strawberry.almond.local-key.pem
+-rw-r--r--  1 calmond  staff   989 Sep 22 21:38 strawberry.almond.local.csr
+-rw-r--r--  1 calmond  staff  1241 Sep 22 21:38 strawberry.almond.local.pem
+```
