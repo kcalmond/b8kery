@@ -104,7 +104,7 @@ scp strawberry.almond.local-key.pem ubuntu@192.168.100.168:server.key
 
 #### Configure & start etcd Cluster
 
-Created `/etc/etcd/etcd.conf` on each cluster node. Note the addition of ETCD_UNSUPPORTED_ARCH="arm64" at end of each file. This is necessary to be able to start etcd on arm64. [https://github.com/etcd-io/etcd/issues/10677#issuecomment-558058616](ref)
+Created `/etc/etcd/etcd.conf` on each cluster node. Note the addition of ETCD_UNSUPPORTED_ARCH="arm64" at end of each file. This is necessary to be able to start etcd on arm64. [ref](https://github.com/etcd-io/etcd/issues/10677#issuecomment-558058616)
 ```
 ubuntu@strawberry:~$ cat /etc/etcd/etcd.conf
 ETCD_NAME=strawberry.almond.lan
