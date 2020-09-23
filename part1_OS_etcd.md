@@ -196,7 +196,7 @@ sudo systemctl enable etcd
 sudo systemctl start etcd
 ```
 
-This issue comment was helpful. Here is what I did to fix etcd startup problems (on each node):
+[This issue comment](https://github.com/etcd-io/etcd/issues/10677#issuecomment-572911175) was helpful. Here is what I did to fix etcd startup problems (on each node):
 ```bash
 sudo mkdir -p /var/lib/etcd/default
 sudo chown -R etcd:etcd /var/lib/etcd
