@@ -11,4 +11,18 @@ Following these blog guidelines to build a pi4 based *HA* k3s cluster for lab wo
   * strawberry.almond.local 192.168.100.168
 
 ## ETCD Setup
-*
+* Following steps in #2 above - changed "amd" to "arm"...
+```bash
+ETCD_VER=v3.4.10
+
+DOWNLOAD_URL=https://storage.googleapis.com/etcd
+
+rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+rm -rf /tmp/etcd-download-test &amp;&amp; mkdir -p /tmp/etcd-download-test
+
+curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+
+tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd-download-test --strip-components=1
+
+rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+```
