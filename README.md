@@ -11,3 +11,7 @@ Annotations/fixes to the process are included.
 
 * **[Part 1](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[Part 2](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
+
+##Key Differences## between this config and thenewstack.io blog are:
+* Using a RaspPi4b based cluster - ARM64 - therefore the etcd implementation is experimental status
+* 3 nodes instead of 4 - no need to run k3s agent setup part
