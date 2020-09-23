@@ -18,7 +18,7 @@ ETCD_VER=v3.4.10
 DOWNLOAD_URL=https://storage.googleapis.com/etcd
 
 rm -f /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
-rm -rf /tmp/etcd-download-test &amp;&amp; mkdir -p /tmp/etcd-download-test
+rm -rf /tmp/etcd-download-test && mkdir -p /tmp/etcd-download-test
 
 curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-arm64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
 
@@ -41,4 +41,20 @@ chmod +x /tmp/etcd-download-test/etcdctl
 #Move them to the bin folder
 sudo mv /tmp/etcd-download-test/etcd /usr/bin
 sudo mv /tmp/etcd-download-test/etcdctl /usr/bin
+```
+
+* Ran cfssl commands just as described in blog:
+```bash
+brew install cfssl
+mkdir ~/b8kerybuild;cd b8kerybuild  #...do everything in a staging directory
+echo '{"CN":"CA","key":{"algo":"rsa","size":2048}}' | cfssl gencert -initca - | cfssljson -bare ca -
+echo '{"signing":{"default":{"expiry":"43800h","usages":["signing","key encipherment","server auth","client auth"]}}}' > ca-config.json
+```
+
+```bash
+ls -l ~/b8kerybuild
+-rw-r--r--  1 calmond  staff   112 Sep 22 21:33 ca-config.json
+-rw-------  1 calmond  staff  1675 Sep 22 21:31 ca-key.pem
+-rw-r--r--  1 calmond  staff   883 Sep 22 21:31 ca.csr
+-rw-r--r--  1 calmond  staff  1070 Sep 22 21:31 ca.pem
 ```
