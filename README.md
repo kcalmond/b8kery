@@ -1,7 +1,9 @@
 # b8kery lab build notes
-Following these blog guidelines to build a pi4 based *HA* k3s cluster for lab workloads:
-1. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
-1. https://thenewstack.io/tutorial-set-up-a-secure-and-highly-available-etcd-cluster/
+Following the steps in the blog below to complete first phase (OS install/node config/etc cluster config) for building an *HA k3s cluster*.
+
+https://thenewstack.io/tutorial-set-up-a-secure-and-highly-available-etcd-cluster/
+
+NOTE: this is an *experimental* HA config since etcd is considered "experimental" right now on arm64. 
 
 ## ClusterOS Setup
 Used "ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img.xz" image available here: https://cdimage.ubuntu.com/releases/18.04/release/
@@ -186,6 +188,8 @@ WantedBy=multi-user.target
 ```
 
 #### Start up & test etcd Cluster
+Everything checks out...
+
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
