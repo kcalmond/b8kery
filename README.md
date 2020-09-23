@@ -29,7 +29,7 @@ rm -f /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
 chmod +x /tmp/etcd-download-test/etcd
 chmod +x /tmp/etcd-download-test/etcdctl
 ```
-#### etcd --version fails using commands below because you need to have ETC_UNSUPPORTED_ARCH-arm64 set first. Fixed this in later step setting up systemctl etc.service
+#### `etcd --version` fails using commands below because you need to have ETC_UNSUPPORTED_ARCH-arm64 set first. Fixed this in later step setting up systemctl etc.service
 ```bash
 #Verify the downloads
 /tmp/etcd-download-test/etcd --version
