@@ -29,7 +29,7 @@ rm -f /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
 chmod +x /tmp/etcd-download-test/etcd
 chmod +x /tmp/etcd-download-test/etcdctl
 ```
-#### `etcd --version` fails using commands below because you need to have ETC_UNSUPPORTED_ARCH-arm64 set first. Fixed this in later step setting up systemctl etc.service
+#### `etcd --version` fails using commands below because you need to have ETC_UNSUPPORTED_ARCH=arm64 set first. Fixed this in later step setting up systemctl etc.service
 ```bash
 #Verify the downloads
 /tmp/etcd-download-test/etcd --version
@@ -103,3 +103,60 @@ scp strawberry.almond.local-key.pem ubuntu@192.168.100.168:server.key
  ```
 
 #### Configure & start etcd Cluster
+
+Created `/etc/etcd/etcd.conf` on each cluster node:
+```
+ubuntu@strawberry:~$ cat /etc/etcd/etcd.conf
+ETCD_NAME=strawberry.almond.lan
+ETCD_LISTEN_PEER_URLS="https://192.168.100.168:2380"
+ETCD_LISTEN_CLIENT_URLS="https://192.168.100.168:2379"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_INITIAL_CLUSTER="blueberry.almond.lan=https://192.168.100.16:2380,blackberry.almond.lan=https://192.168.100.137:2380,strawberry.almond.lan=https://192.168.100.168:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="https://192.168.100.168:2380"
+ETCD_ADVERTISE_CLIENT_URLS="https://192.168.100.168:2379"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_CERT_FILE="/etc/etcd/server.crt"
+ETCD_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CLIENT_CERT_AUTH=true
+ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_PEER_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CERT_FILE="/etc/etcd/server.crt"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_UNSUPPORTED_ARCH="arm64"
+
+ubuntu@blueberry:~$ cat /etc/etcd/etcd.conf
+ETCD_NAME=blueberry.almond.lan
+ETCD_LISTEN_PEER_URLS="https://192.168.100.16:2380"
+ETCD_LISTEN_CLIENT_URLS="https://192.168.100.16:2379"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_INITIAL_CLUSTER="blueberry.almond.lan=https://192.168.100.16:2380,blackberry.almond.lan=https://192.168.100.137:2380,strawberry.almond.lan=https://192.168.100.168:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="https://192.168.100.16:2380"
+ETCD_ADVERTISE_CLIENT_URLS="https://192.168.100.16:2379"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_CERT_FILE="/etc/etcd/server.crt"
+ETCD_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CLIENT_CERT_AUTH=true
+ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_PEER_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CERT_FILE="/etc/etcd/server.crt"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_UNSUPPORTED_ARCH="arm64"
+
+ubuntu@blackberry:~$ cat /etc/etcd/etcd.conf
+ETCD_NAME=blackberry.almond.lan
+ETCD_LISTEN_PEER_URLS="https://192.168.100.137:2380"
+ETCD_LISTEN_CLIENT_URLS="https://192.168.100.137:2379"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
+ETCD_INITIAL_CLUSTER="blueberry.almond.lan=https://192.168.100.16:2380,blackberry.almond.lan=https://192.168.100.137:2380,strawberry.almond.lan=https://192.168.100.168:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="https://192.168.100.137:2380"
+ETCD_ADVERTISE_CLIENT_URLS="https://192.168.100.137:2379"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_CERT_FILE="/etc/etcd/server.crt"
+ETCD_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CLIENT_CERT_AUTH=true
+ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/etcd-ca.crt"
+ETCD_PEER_KEY_FILE="/etc/etcd/server.key"
+ETCD_PEER_CERT_FILE="/etc/etcd/server.crt"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_UNSUPPORTED_ARCH="arm64"
+```
