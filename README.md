@@ -17,12 +17,28 @@ ETCD_VER=v3.4.10
 
 DOWNLOAD_URL=https://storage.googleapis.com/etcd
 
-rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+rm -f /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
 rm -rf /tmp/etcd-download-test &amp;&amp; mkdir -p /tmp/etcd-download-test
 
-curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-arm64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
 
-tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd-download-test --strip-components=1
+tar xzvf /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz -C /tmp/etcd-download-test --strip-components=1
 
-rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+rm -f /tmp/etcd-${ETCD_VER}-linux-arm64.tar.gz
+
+chmod +x /tmp/etcd-download-test/etcd
+chmod +x /tmp/etcd-download-test/etcdctl
+```
+* etcd --version fails using commands below because you need to have ETC_UNSUPPORTED_ARCH-arm64 set first. Fixed this in later step setting up systemctl etc.service
+```bash
+#Verify the downloads
+/tmp/etcd-download-test/etcd --version
+/tmp/etcd-download-test/etcdctl version
+```
+
+* move binaries to /usr/bin (instead of /usr/local/bin in blog)
+```bash
+#Move them to the bin folder
+sudo mv /tmp/etcd-download-test/etcd /usr/bin
+sudo mv /tmp/etcd-download-test/etcdctl /usr/bin
 ```
