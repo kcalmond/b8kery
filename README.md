@@ -1,4 +1,4 @@
-# b8kery lab build
+# b8kery lab build: running k3s on Raspberry Pi 4B/4gb nodes consuming "external" etcd for k8s HA
 
 The build process is based on an adaptation of the two excellent HowTos posted here:
 
@@ -6,7 +6,7 @@ The build process is based on an adaptation of the two excellent HowTos posted h
 2. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
 
 **Key Differences** between this config and thenewstack.io blog:
-* Using a RaspPi4b based cluster, which is ARM64 based. *The etcd implementation on arm64 is still unsupport/experimental status as of this writing.* ref: https://github.com/etcd-io/etcd/issues/9077 
+* Using a RaspPi4b based cluster, which is ARM64 based. **The etcd implementation on arm64 is still unsupport/experimental status as of this writing.** ref: https://github.com/etcd-io/etcd/issues/9077
 * 3 nodes instead of 4 - no need to run k3s agent setup part
 
 Annotations/fixes to the process are included.
