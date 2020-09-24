@@ -1,4 +1,4 @@
-# b8kery lab build: running k3s on Raspberry Pi 4B/4gb nodes consuming "external" etcd for k8s HA
+# Running k3s cluster on Raspberry Pi 4B/4gb nodes consuming "external" etcd for k8s HA
 
 The build process is based on an adaptation of the two excellent HowTos posted here:
 
