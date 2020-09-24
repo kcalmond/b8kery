@@ -6,7 +6,7 @@ The build process is based on an adaptation of the two excellent HowTos posted h
 2. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
 3. (for alt part 2...) https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a
 
-Read #2 to understand the target architecture.
+Read #2 to understand the target architecture for etcd and k3s.
 
 **Key Differences** between this config and thenewstack.io blog:
 * Using a RaspPi4b based cluster, which is ARM64 based. **The etcd implementation on arm64 is still unsupport/experimental status as of this writing.** ref: https://github.com/etcd-io/etcd/issues/9077
@@ -16,4 +16,4 @@ Annotations/fixes to the process are included.
 
 * **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
-* **[alt_part2_k3s_nginx_metallb](https://github.com/kcalmond/b8kery/blob/master/part2_k3s_nginx_metallb.md)**
+* **[part2_metallb_certmgr_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_certmgr_nginx.md)**
