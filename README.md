@@ -4,6 +4,7 @@ The build process is based on an adaptation of the two excellent HowTos posted h
 
 1. https://thenewstack.io/tutorial-set-up-a-secure-and-highly-available-etcd-cluster/
 2. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
+3. (for alt part 2...) https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a
 
 Read #2 to understand the target architecture.
 
