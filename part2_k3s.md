@@ -37,7 +37,7 @@ export K3S_DATASTORE_KEYFILE='/etc/etcd/server.key'
 Ran the k3s install on each node:
 `curl -sfL https://get.k3s.io | sh -`
 
-After a few seconds:
+After a few seconds check status of k3s on one of the cluster nodes:
 ```bash
 ubuntu@blueberry:~$ sudo chown ubuntu:ubuntu /etc/rancher/k3s/k3s.yaml
 ubuntu@blueberry:~$ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
