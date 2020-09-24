@@ -13,20 +13,12 @@ NOTES:
   ubuntu@blueberry:~$ sudo systemctl start etcd
   ubuntu@blueberry:~$ etcdctl --endpoints https://192.168.100.1:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key member list
   ```
-  
-  `  ubuntu@blueberry:~$ sudo systemctl stop etcd`
-  `  ubuntu@blueberry:~$ sudo sudo rm -rf /var/lib/etcd/*`
-  `  ubuntu@blueberry:~$ sudo systemctl start etcd`
-  `  ubuntu@blueberry:~$ etcdctl --endpoints https://192.168.100.1:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key member list`
-
-
-
-### Add `cgroup_memory=1 cgroup_enable=memory` to /boot/firmware/nobtcmd.txt
-K3s startup failed until I troubleshooted and found that for my install of Ubuntu 18.04 on RPi4b/arm64 nodes you need to first add the last two parameters to nobtcmd.txt:
-```bash
-> cat /boot/firmware/nobtcmd.txt
-net.ifnames=0 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty1 root=LABEL=writable rootfstype=ext4 elevator=deadline rootwait fixrtc cgroup_memory=1 cgroup_enable=memory
-```
+* **K3s startup failed until I troubleshooted and found that for my install of Ubuntu 18.04 on RPi4b/arm64 nodes you need to first add the last two parameters to nobtcmd.txt:**
+  * Add `cgroup_memory=1 cgroup_enable=memory` to /boot/firmware/nobtcmd.txt
+  ```bash
+  > cat /boot/firmware/nobtcmd.txt
+  net.ifnames=0 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty1 root=LABEL=writable rootfstype=ext4 elevator=deadline rootwait fixrtc cgroup_memory=1 cgroup_enable=memory
+  ```
 
 Reboot, check the health of your fresh etcd cluster post-reboot, and proceed.
 
