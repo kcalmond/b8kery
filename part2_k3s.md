@@ -40,9 +40,10 @@ export K3S_DATASTORE_CERTFILE='/etc/etcd/server.crt'
 export K3S_DATASTORE_KEYFILE='/etc/etcd/server.key'
 ```
 
-*No need to export K3S_TOKEN since I don't have more "agent" nodes to add at this time.*
+*No need to export K3S_TOKEN since I don't have more "agent" nodes to add at this time ala the newstack.io blog*
 
-Ran the k3s install on each node:
+####Ran the k3s install on each node:
+* I want to run metallb on this cluster and use ingress-nginx so the command below prevents deployment of traefik (the k3s default ingress/internal LB)
 
 `curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=servicelb --disable=traefik" sh -s - --write-kubeconfig-mode 644`
 
@@ -54,6 +55,14 @@ NAME                      STATUS   ROLES    AGE   VERSION
 blackberry.almond.local   Ready    master   4m16s   v1.18.8+k3s1
 blueberry.almond.local    Ready    master   4m14s   v1.18.8+k3s1
 strawberry.almond.local   Ready    master   4m14s   v1.18.8+k3s1
+```
+
+```bash
+❯ k get pods -A
+NAMESPACE        NAME                                       READY   STATUS    RESTARTS   AGE
+kube-system      coredns-7944c66d8d-s7hzf                   1/1     Running   0          11h
+kube-system      local-path-provisioner-6d59f47c7-6ltcb     1/1     Running   5          11h
+kube-system      metrics-server-7566d596c8-4rg2x            1/1     Running   0          11h
 ```
 
 ```bash
