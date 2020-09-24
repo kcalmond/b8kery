@@ -3,7 +3,15 @@ Following the steps in the blog below to complete second phase (k3s config) here
 
 https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
 
-NOTE: this is an *experimental* HA config since etcd is considered "experimental" right now on arm64.
+NOTES:
+* This is an *experimental* HA config since etcd is considered "experimental" right now on arm64.
+* If you need to uninstall/reinstall k3s then you must blow away k8s data written into the etcd db (because etcd is external in this config and from experience I found a very confused k3s env starting up if I didn't blow away etcd data before running the k3s installer again). To reset/restart etcd (after running k3s-uninstall.sh), on each node do this:
+  `  ubuntu@blueberry:~$ sudo systemctl stop etcd`
+  `  ubuntu@blueberry:~$ sudo sudo rm -rf /var/lib/etcd/*`
+  `  ubuntu@blueberry:~$ sudo systemctl start etcd`
+  `  ubuntu@blueberry:~$ etcdctl --endpoints https://192.168.100.1:2379 --cert /etc/etcd/server.crt --cacert /etc/etcd/etcd-ca.crt --key /etc/etcd/server.key member list`
+
+
 
 ### Add `cgroup_memory=1 cgroup_enable=memory` to /boot/firmware/nobtcmd.txt
 K3s startup failed until I troubleshooted and found that for my install of Ubuntu 18.04 on RPi4b/arm64 nodes you need to first add the last two parameters to nobtcmd.txt:
@@ -32,34 +40,34 @@ export K3S_DATASTORE_CERTFILE='/etc/etcd/server.crt'
 export K3S_DATASTORE_KEYFILE='/etc/etcd/server.key'
 ```
 
-(no need to export K3S_TOKEN since I don't have more "agent" nodes to add...)
+*No need to export K3S_TOKEN since I don't have more "agent" nodes to add at this time.*
 
 Ran the k3s install on each node:
-`curl -sfL https://get.k3s.io | sh -`
+
+`curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=servicelb --disable=traefik" sh -s - --write-kubeconfig-mode 644`
 
 After a few seconds check status of k3s on one of the cluster nodes:
 ```bash
-ubuntu@blueberry:~$ sudo chown ubuntu:ubuntu /etc/rancher/k3s/k3s.yaml
 ubuntu@blueberry:~$ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ubuntu@blueberry:~$ kubectl get nodes
 NAME                      STATUS   ROLES    AGE   VERSION
-blackberry.almond.local   Ready    master   17h   v1.18.8+k3s1
-blueberry.almond.local    Ready    master   17h   v1.18.8+k3s1
-strawberry.almond.local   Ready    master   17h   v1.18.8+k3s1
+blackberry.almond.local   Ready    master   4m16s   v1.18.8+k3s1
+blueberry.almond.local    Ready    master   4m14s   v1.18.8+k3s1
+strawberry.almond.local   Ready    master   4m14s   v1.18.8+k3s1
 ```
 
 ```bash
 ubuntu@blueberry:~$ sudo systemctl status k3s.service
 ● k3s.service - Lightweight Kubernetes
    Loaded: loaded (/etc/systemd/system/k3s.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2020-09-23 06:45:14 UTC; 16m ago
+   Active: active (running) since Thu 2020-09-24 06:09:39 UTC; 4min 49s ago
      Docs: https://k3s.io
-  Process: 3616 ExecStartPre=/sbin/modprobe overlay (code=exited, status=0/SUCCESS)
-  Process: 3615 ExecStartPre=/sbin/modprobe br_netfilter (code=exited, status=0/SUCCESS)
- Main PID: 3617 (k3s-server)
-    Tasks: 65
+  Process: 13239 ExecStartPre=/sbin/modprobe overlay (code=exited, status=0/SUCCESS)
+  Process: 13238 ExecStartPre=/sbin/modprobe br_netfilter (code=exited, status=0/SUCCESS)
+ Main PID: 13240 (k3s-server)
+    Tasks: 45
    CGroup: /system.slice/k3s.service...
 ```
 
-If you have worker nodes to add follow the additional steps to install the K3s agent per the source blog.
-Also - run the steps to check proper usage of the etcd service included in the source blog.
+If you have worker nodes to add follow the additional steps to install the K3s agent per the newstack.io source blog.
+Also - good idea to run the steps to check proper usage of the external etcd service included in the source blog.
