@@ -6,7 +6,7 @@ The build process is based on an adaptation of the two excellent HowTos posted h
 2. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
 
 **Key Differences** between this config and thenewstack.io blog:
-* Using a RaspPi4b based cluster - ARM64 - *therefore the etcd implementation is experimental status°
+* Using a RaspPi4b based cluster, which is ARM64 based. *The etcd implementation on arm64 is still unsupport/experimental status as of this writing.* ref: https://github.com/etcd-io/etcd/issues/9077 
 * 3 nodes instead of 4 - no need to run k3s agent setup part
 
 Annotations/fixes to the process are included.
