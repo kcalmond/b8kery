@@ -1,4 +1,4 @@
-# b8kery lab build PART 2
+# b8kery lab build PART 2: k3s install
 Following the steps in the blog below to complete second phase (k3s config) here:
 
 https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
@@ -6,6 +6,7 @@ https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-ed
 NOTES:
 * This is an *experimental* HA config since etcd is considered "experimental" right now on arm64.
 * If you need to uninstall/reinstall k3s then you must blow away k8s data written into the etcd db (because etcd is external in this config and from experience I found a very confused k3s env starting up if I didn't blow away etcd data before running the k3s installer again). To reset/restart etcd (after running k3s-uninstall.sh), on each node do this:
+
   `  ubuntu@blueberry:~$ sudo systemctl stop etcd`
   `  ubuntu@blueberry:~$ sudo sudo rm -rf /var/lib/etcd/*`
   `  ubuntu@blueberry:~$ sudo systemctl start etcd`

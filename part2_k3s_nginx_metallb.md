@@ -1,4 +1,4 @@
-# b8kery lab build PART 2
+# b8kery lab build PART 2: k3s install
 Following the steps in the blog below to complete second phase (k3s config) here:
 
 https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
