@@ -15,4 +15,4 @@ Annotations/fixes to the process are included.
 
 * **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
-* **[alt_part2_k3s_nginx_metallb](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
+* **[alt_part2_k3s_nginx_metallb](https://github.com/kcalmond/b8kery/blob/master/part2_k3s_nginx_metallb.md)**
