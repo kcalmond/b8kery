@@ -1,4 +1,4 @@
-# b8kery lab build PART 3: Metallb, certmanager, ...
+# b8kery lab build PART 3: Metallb, nginx, certmanager
 
 * Configured local client (Macbook) with latest version of helm.  
 * Installed/configured metallb, nginx-ingress, certmanager &* setup certmanager issuers.
@@ -50,7 +50,7 @@ NAME                       TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S) 
 nginx-ingress-controller   LoadBalancer   10.43.87.32   192.168.200.1   80:30351/TCP,443:30783/TCP   58s
 ```
 
-###cert-manager
+### cert-manager
 Used helm chart to install. Using commands from kauri.io reference, updated to v1.0.2:
 
 ```bash
