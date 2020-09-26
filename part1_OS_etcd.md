@@ -11,6 +11,28 @@ nodes:
   * blueberry.almond.local 192.168.100.16
   * blackberry.almond.local 192.168.100.137
   * strawberry.almond.local 192.168.100.168
+  
+### NFS Mounts (for PV consumption)
+Using local Synology NAS (NFS shares) for mounting persistent file systems. For use in later configs...
+Each /etc/fstab config looked like this:
+
+```
+ubuntu@blackberry:/mnt/synnfs-b8kery$ cat /etc/fstab
+LABEL=writable	/	 ext4	defaults	0 0
+LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
+192.168.0.10:/volume1/b8kery-nfs/ /mnt/synnfs-b8kery nfs _netdev,noauto,x-systemd.automount,nolock,soft,intr,nfsvers=3,tcp,bg,rw 0 0
+```
+
+Notes:
+
+* mount options copied from guidance [[here](https://askubuntu.com/questions/979058/16-04-nfs-mount-problems-at-boot-time)
+* You must use `sudo systemctl edit remote-fs-pre.target` to add the following lines:
+
+```
+Wants=network-online.target
+After=network-online.target
+```
+
 
 ## ETCD Setup
 #### Following steps in #2 above - changed "amd" to "arm"...
