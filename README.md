@@ -19,7 +19,7 @@ Annotations/fixes to the process are included.
 * **[part2_metallb_certmgr_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_certmgr_nginx.md)**
 
 
-TBDoc:
+## TBDoc:
 * static & dynamic PV setup. Ref guidelines:
   * static first part of this: https://medium.com/@myte/kubernetes-nfs-and-dynamic-nfs-provisioning-97e2afb8b4a9
   * dynamic: https://opensource.com/article/20/6/kubernetes-nfs-client-provisioning
@@ -32,20 +32,20 @@ TBDoc:
       * modified cluster-monitoring/manifests/grafana-service.yaml for using metallb provided external l4 LB:
       ```
       rancher@hackberry:~/GH/cluster-monitoring/manifests> cat grafana-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: grafana
-  name: grafana
-  namespace: monitoring
-spec:
-  ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 3000
-  selector:
-    app: grafana
-  type: LoadBalancer
-  ```
+      apiVersion: v1
+      kind: Service
+      metadata:
+        labels:
+          app: grafana
+        name: grafana
+        namespace: monitoring
+      spec:
+        ports:
+        - name: http
+          protocol: TCP
+          port: 80
+          targetPort: 3000
+        selector:
+          app: grafana
+        type: LoadBalancer
+        ```
