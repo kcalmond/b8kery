@@ -17,3 +17,35 @@ Annotations/fixes to the process are included.
 * **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
 * **[part2_metallb_certmgr_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_certmgr_nginx.md)**
+
+
+TBDoc:
+* static & dynamic PV setup. Ref guidelines:
+  * static first part of this: https://medium.com/@myte/kubernetes-nfs-and-dynamic-nfs-provisioning-97e2afb8b4a9
+  * dynamic: https://opensource.com/article/20/6/kubernetes-nfs-client-provisioning
+
+* Monitoring Setup:
+  * Refs:
+    * https://github.com/carlosedp/cluster-monitoring
+    * https://kauri.io/deploy-prometheus-and-grafana-to-monitor-a-kube/186a71b189864b9ebc4ef7c8a9f0a6b5/a
+    * https://opensource.com/article/20/7/homelab-metallb  <--for LB setup examples
+      * modified cluster-monitoring/manifests/grafana-service.yaml for using metallb provided external l4 LB:
+      ```
+      rancher@hackberry:~/GH/cluster-monitoring/manifests> cat grafana-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: monitoring
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 3000
+  selector:
+    app: grafana
+  type: LoadBalancer
+  ```
