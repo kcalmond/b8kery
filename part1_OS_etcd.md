@@ -11,10 +11,9 @@ nodes:
   * blueberry.almond.local 192.168.100.16
   * blackberry.almond.local 192.168.100.137
   * strawberry.almond.local 192.168.100.168
-  
+
 ### NFS Mounts (for PV consumption)
-Using local Synology NAS (NFS shares) for mounting persistent file systems. For use in later configs...
-Each /etc/fstab config looked like this:
+Using local Synology NAS (NFS shares) for mounting persistent file systems. For use in later configurations. Each /etc/fstab config looked like this. "b8kery-nfs" used for manual PV creation. Dynamic PVs using NFS-client-provisioner don't require a pre-config'd export on cluster nodes.
 
 ```
 ubuntu@blackberry:/mnt/synnfs-b8kery$ cat /etc/fstab
