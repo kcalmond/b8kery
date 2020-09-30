@@ -19,7 +19,7 @@ Annotations/fixes to the process are included.
 * **[part2_metallb_certmgr_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_certmgr_nginx.md)**
 
 
-## TBDoc:
+## TBDoc - stuff completed that needs to be retro-doc'd into this repo:
 * static & dynamic PV setup. Ref guidelines:
   * static first part of this: https://medium.com/@myte/kubernetes-nfs-and-dynamic-nfs-provisioning-97e2afb8b4a9
   * dynamic: https://opensource.com/article/20/6/kubernetes-nfs-client-provisioning
