@@ -55,4 +55,19 @@ Annotations/fixes to the process are included.
       * https://cert-manager.io/next-docs/tutorials/acme/ingress/
       * re using default self-signed cert section here: https://github.com/carlosedp/cluster-monitoring
        
-     
+* Clean up
+  * do a delete on these:
+    ```
+    kubectl apply -f manifests/ingress-alertmanager.yaml
+    kubectl apply -f manifests/ingress-prometheus.yaml
+    kubectl apply -f manifests/ingress-grafana.yaml
+    kubectl apply -f ./grafana-service.yaml
+    ```
+  * Do upgrade process here to migration from stable/nginx-ingress to nginx-ingress/nginx-ingress
+    * helm uninstall (check that svc grabbing 200.1 IP also deleted...?
+    * helm install of nginx-ingress/nginx-ingress
+      * use form of install with defaultBackend.enabled=true
+      * check ip allocation for default svc
+    * redo monitoring yamls above
+    
+
