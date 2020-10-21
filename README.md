@@ -49,3 +49,10 @@ Annotations/fixes to the process are included.
           app: grafana
         type: LoadBalancer
         ```
+  * TBD
+    * setup persistence for Prometheus & Grafana: https://github.com/carlosedp/cluster-monitoring
+    * setup TLS
+      * https://cert-manager.io/next-docs/tutorials/acme/ingress/
+      * re using default self-signed cert section here: https://github.com/carlosedp/cluster-monitoring
+       
+     
