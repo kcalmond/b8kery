@@ -56,6 +56,8 @@ Annotations/fixes to the process are included.
       * re using default self-signed cert section here: https://github.com/carlosedp/cluster-monitoring
        
 * Clean up
+(DONE...)
+```
   * do a delete on these:
     ```
     kubectl apply -f manifests/ingress-alertmanager.yaml
@@ -69,5 +71,4 @@ Annotations/fixes to the process are included.
       * use form of install with defaultBackend.enabled=true
       * check ip allocation for default svc
     * redo monitoring yamls above
-    
-
+```
