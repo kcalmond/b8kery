@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  labels:
+    app: pihole
+  namespace: pihole
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+      - name: pihole
+        image: 'pihole/pihole:latest'
+        ports:
+          - name: dns-tcp
+            hostPort: 53
+            containerPort: 53
+            protocol: TCP
+          - name: dns-udp
+            hostPort: 53
+            containerPort: 53
+            protocol: UDP
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        env:
+          - name: DNS1
+            value: 9.9.9.9
+          - name: DNS2
+            value: 149.112.112.112
+          - name: TZ
+            value: America/Los_Angeles
+        volumeMounts:
+          - mountPath: /etc/pihole
+            name: pihole-pv
+            subPath: etc-pihole
+          - mountPath: /etc/dnsmasq.d
+            name: pihole-pv
+            subPath: etc-dnsmasq.d
+      volumes:
+      - name: pihole-pv
+        persistentVolumeClaim:
+          claimName: pihole-pv
