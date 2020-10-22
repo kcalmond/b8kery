@@ -16,7 +16,7 @@ Annotations/fixes to the process are included.
 
 * **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
-* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_nginx.md)**
+* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/part3_metallb_nginx.md)**
 * **[part4_certmgr](https://github.com/kcalmond/b8kery/blob/master/part4_certmgr.md)**
 
 
@@ -55,7 +55,7 @@ Annotations/fixes to the process are included.
     * setup TLS
       * https://cert-manager.io/next-docs/tutorials/acme/ingress/
       * re using default self-signed cert section here: https://github.com/carlosedp/cluster-monitoring
-       
+
 * Clean up
 (DONE...)
 ```
