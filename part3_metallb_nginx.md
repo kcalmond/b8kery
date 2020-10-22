@@ -1,4 +1,4 @@
-# b8kery lab build PART 3: Metallb, nginx, certmanager
+# b8kery lab build PART 3: Metallb, nginx
 
 * Configured local client (Macbook) with latest version of helm.  
 * Installed/configured metallb, nginx-ingress, certmanager &* setup certmanager issuers.
@@ -93,4 +93,3 @@ If TLS is enabled for the Ingress, a Secret containing the certificate and key m
 NAME                       TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE   SELECTOR
 ingress-nginx-controller   LoadBalancer   10.43.21.124   192.168.200.1   80:30819/TCP,443:31115/TCP   39s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=ingress-nginx,app.kubernetes.io/name=ingress-nginx
 ```
-
