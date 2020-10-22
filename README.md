@@ -16,7 +16,8 @@ Annotations/fixes to the process are included.
 
 * **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
 * **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
-* **[part2_metallb_certmgr_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_certmgr_nginx.md)**
+* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/part2_metallb_nginx.md)**
+* **[part4_certmgr](https://github.com/kcalmond/b8kery/blob/master/part4_certmgr.md)**
 
 
 ## TBDoc - stuff completed that needs to be retro-doc'd into this repo:
