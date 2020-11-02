@@ -39,7 +39,7 @@ EOF
 
 (migrated from stable/nginx-ingress to nginx-ingress/nginx-ingress 21 Oct 20, ref: https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx ...)
 
-Used same cmd examples provided in the kauri.io reference:
+Used same cmd examples provided in the kauri.io reference, updated per above path change: 
 
 ```bash
 ❯ helm install ingress-nginx ingress-nginx/ingress-nginx
