@@ -1,5 +1,5 @@
+### cat example_deploy_arm.yaml
 ```
-❯ cat example_deploy_arm.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,8 +20,10 @@ spec:
         name: kuard
         ports:
         - containerPort: 8080
+```        
 
-❯ cat example_svc.yaml
+### example_svc.yaml
+```        
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,8 +35,10 @@ spec:
     protocol: TCP
   selector:
     app: kuard
+```        
 
-❯ cat example_ingress.yaml
+### cat example_ingress.yaml
+```        
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -56,5 +60,4 @@ spec:
         backend:
           serviceName: kuard
           servicePort: 80
-
-```
+```        
