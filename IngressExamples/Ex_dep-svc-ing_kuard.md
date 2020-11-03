@@ -1,4 +1,4 @@
-### cat example_deploy_arm.yaml
+### example_deploy_arm.yaml
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -37,7 +37,7 @@ spec:
     app: kuard
 ```        
 
-### cat example_ingress.yaml
+### example_ingress.yaml
 ```        
 apiVersion: extensions/v1beta1
 kind: Ingress
