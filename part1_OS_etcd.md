@@ -15,6 +15,11 @@ nodes:
 ### NFS Mounts (for PV consumption)
 Using local Synology NAS (NFS shares) for mounting persistent file systems. For use in later configurations. Each /etc/fstab config looked like this. The single `b8kery-nfs` entry below is for manual PV creation. Dynamic PVs using NFS-client-provisioner don't require a pre-config'd export on cluster nodes.
 
+Make sure the nfs-common is installed.
+```
+sudo apt install nfs-common
+```
+
 ```
 ubuntu@blackberry:/mnt/synnfs-b8kery$ cat /etc/fstab
 LABEL=writable	/	 ext4	defaults	0 0
