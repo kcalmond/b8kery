@@ -1,27 +1,11 @@
 # RaspberryPi b8kery
 
-k3s version here: **[README_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/README_k3s.md)**
-
-The build process is based on an adaptation of the two excellent HowTos posted here:
-
-1. https://thenewstack.io/tutorial-set-up-a-secure-and-highly-available-etcd-cluster/
-2. https://thenewstack.io/tutorial-install-a-highly-available-k3s-cluster-at-the-edge/
-3. (for alt part 2...) https://kauri.io/38-install-and-configure-a-kubernetes-cluster-with/418b3bc1e0544fbc955a4bbba6fff8a9/a
-
-Read #2 to understand the target architecture for etcd and k3s.
-
-**Key Differences** between this config and thenewstack.io blog:
-* Using a RaspPi4b based cluster, which is ARM64 based. **The etcd implementation on arm64 is still unsupport/experimental status as of this writing.** ref: https://github.com/etcd-io/etcd/issues/9077
-* 3 nodes instead of 4 - no need to run k3s agent setup part
-
-Annotations/fixes to the process are included.
-
-* **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/k3s/part1_OS_etcd.md)**
-* **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/part2_k3s.md)**
-* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/k3s/part3_metallb_nginx.md)**
-* **[part4_certmgr](https://github.com/kcalmond/b8kery/blob/master/k3s/part4_certmgr.md)**
-
-
+## k3s version here:
+**[README_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/README_k3s.md)**
+___
+## Raspbernetes version here:
+**[README_raspbernetes](https://github.com/kcalmond/b8kery/blob/master/raspbernetes/README_raspbernetes.md)**
+___
 ## TBDoc - stuff completed that needs to be retro-doc'd into this repo:
 * static & dynamic PV setup. Ref guidelines:
   * static first part of this: https://medium.com/@myte/kubernetes-nfs-and-dynamic-nfs-provisioning-97e2afb8b4a9
