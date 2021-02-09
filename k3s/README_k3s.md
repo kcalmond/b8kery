@@ -1,6 +1,4 @@
-# RaspberryPi b8kery
-
-k3s version here: **[README_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/README_k3s)**
+# Running k3s cluster on Raspberry Pi 4B/4gb nodes consuming "external" etcd for k8s HA
 
 The build process is based on an adaptation of the two excellent HowTos posted here:
 
