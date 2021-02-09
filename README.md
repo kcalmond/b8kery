@@ -14,10 +14,10 @@ Read #2 to understand the target architecture for etcd and k3s.
 
 Annotations/fixes to the process are included.
 
-* **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/part1_OS_etcd.md)**
-* **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/part2_k3s.md)**
-* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/part3_metallb_nginx.md)**
-* **[part4_certmgr](https://github.com/kcalmond/b8kery/blob/master/part4_certmgr.md)**
+* **[part1_OS_etcd](https://github.com/kcalmond/b8kery/blob/master/k3s/part1_OS_etcd.md)**
+* **[part2_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/part2_k3s.md)**
+* **[part3_metallb_nginx](https://github.com/kcalmond/b8kery/blob/master/k3s/part3_metallb_nginx.md)**
+* **[part4_certmgr](https://github.com/kcalmond/b8kery/blob/master/k3s/part4_certmgr.md)**
 
 
 ## TBDoc - stuff completed that needs to be retro-doc'd into this repo:
