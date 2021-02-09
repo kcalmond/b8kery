@@ -1,6 +1,6 @@
 # RaspberryPi b8kery
 
-k3s version here: **[README_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/README_k3s)**
+k3s version here: **[README_k3s](https://github.com/kcalmond/b8kery/blob/master/k3s/README_k3s.md)**
 
 The build process is based on an adaptation of the two excellent HowTos posted here:
 
