@@ -16,7 +16,7 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 ```
 
-Applied a configmap specifying 192.168.0.[200-230]. This config based on sample provided in the opensource.com reference. Deploying using layer2 mode. Details: https://metallb.universe.tf/concepts/layer2/
+Applied a configmap specifying 192.168.0.[201-230]. This config based on sample provided in the opensource.com reference. Deploying using layer2 mode. Details: https://metallb.universe.tf/concepts/layer2/
 
 ```bash
 $ cat <<EOF | kubectl create -f -
@@ -31,7 +31,7 @@ data:
     - name: address-pool-1
       protocol: layer2
       addresses:
-      - 192.168.0.200-192.168.0.230
+      - 192.168.0.201-192.168.0.230
 EOF
 ```
 
