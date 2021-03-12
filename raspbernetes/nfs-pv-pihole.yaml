@@ -5,7 +5,7 @@ metadata:
   labels:
     volume: b8kery-nfs-pihole-pv
 spec:
-  storageClassName: manualnfs
+  storageClassName: nfs
   capacity:
     storage: 10Gi
   volumeMode: Filesystem
