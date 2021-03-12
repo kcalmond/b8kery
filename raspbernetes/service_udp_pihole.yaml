@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-svc-udp
+  namespace: pihole
+  annotations:
+    metallb.universe.tf/allow-shared-ip: PiHoleShared
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.0.201
+  ports:
+    - port: 53
+      targetPort: dns-udp
+      protocol: UDP
+      name: dns-udp
+  selector:
+    app: pihole

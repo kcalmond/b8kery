@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  namespace: pihole
+  labels:
+    name: pihole
+spec:
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+      - name: pihole
+        image: pihole/pihole
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "750m"
+        ports:
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: pihole-config
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        livenessProbe:
+          httpGet:
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 60
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /admin.index.php
+            port: 80
+          initialDelaySeconds: 25
+          periodSeconds: 5

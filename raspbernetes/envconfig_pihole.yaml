@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-config
+  namespace: pihole
+data:
+  ServerIP: 192.168.1.201
+  DNS1: 1.1.1.1
+  DNS2: 9.9.9.9
+  WEBPASSWORD: testpihole
+  TZ: America/Los_Angeles
